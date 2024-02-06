@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +7,52 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="conteudo">
-    <div class="principal">
-        <label> Tarefa</label>
+
+    <div class="conteudo">
+        <label for="tarefa">Tarefa</label>
         <input type="text" name="tarefa" id="tarefa">
-        <button type="submit">adicionar</button>
+        <button type="button" onclick="adicionarTarefa()">Adicionar</button>
     </div>
+
     <div class="lista">
-        <ul>
-            <h2>Lista de tarefas</h2>
-            <li>ir ao toalhete</li>
-            <li>nao fazer nada e mandar um palavrao</li>
-            <li>jogar video game</li>
-            <li>estudar front end</li>
-            <li>estudar back end</li>
-
+        <h2>Lista de tarefas</h2>
+        <ul id="listaTarefas">
+            <li><input type="checkbox" id="chk1"> ir ao toalhete <span class="remove-btn" onclick="removerTarefa('chk1')">X</span></li>
+            <li><input type="checkbox" id="chk2"> nao fazer nada e mandar um palavrao <span class="remove-btn" onclick="removerTarefa('chk2')">X</span></li>
+            <li><input type="checkbox" id="chk3"> jogar video game <span class="remove-btn" onclick="removerTarefa('chk3')">X</span></li>
+            <li><input type="checkbox" id="chk4"> estudar front end <span class="remove-btn" onclick="removerTarefa('chk4')">X</span></li>
+            <li><input type="checkbox" id="chk5"> estudar back end <span class="remove-btn" onclick="removerTarefa('chk5')">X</span></li>
         </ul>
-
-
     </div>
-   
 
-</div>
-    
+    <script>
+        function adicionarTarefa() {
+            var novaTarefa = document.getElementById("tarefa").value;
+            if (novaTarefa.trim() !== "") {
+                var lista = document.getElementById("listaTarefas");
+                var novaLi = document.createElement("li");
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                novaLi.appendChild(checkbox);
+                novaLi.appendChild(document.createTextNode(" " + novaTarefa));
+                var removeBtn = document.createElement("span");
+                removeBtn.className = "remove-btn";
+                removeBtn.appendChild(document.createTextNode("x"));
+                removeBtn.onclick = function() {
+                    removerTarefa(checkbox.id);
+                };
+                novaLi.appendChild(removeBtn);
+                lista.appendChild(novaLi);
+                document.getElementById("tarefa").value = "";
+            }
+        }
+
+        function removerTarefa(checkboxId) {
+            var checkbox = document.getElementById(checkboxId);
+            var li = checkbox.parentNode;
+            li.parentNode.removeChild(li);
+        }
+    </script>
+
 </body>
 </html>
