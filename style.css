@@ -2,5 +2,28 @@
     background-color: darkgray;
     height:100%;
     width: 100%;
+    color:azure;
     
 }
+.principal{
+    background-color: cadetblue;
+}
+button{
+    background-color: rgb(243, 117, 142);
+    padding:10px;
+    color:burlywood;
+    border-radius: 8px;
+    margin:5px;
+    
+}
+button:hover{
+    background-color:burlywood;
+    padding:10px;
+    color:rgb(243, 117, 142);
+    
+}
+label{
+    padding:16px;}
+ul li{
+    padding: 10px;;
+}    
